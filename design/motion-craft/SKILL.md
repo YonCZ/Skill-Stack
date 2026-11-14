@@ -65,3 +65,66 @@ Every page gets one moment that carries the product's claim, and only one. It sh
 - Motion on keyboard-driven actions and on controls used more than once a minute.
 - A second signature moment competing with the first.
 - Animation used to hide a missing state.
+
+## Using Motion in this workspace
+
+`motion` is installed at the lab root, with React and Vite. Builds resolve it from there; never run `npm install` in a build folder.
+
+Start from the template:
+
+```sh
+cp -R /Users/yon/Desktop/Programming/Projects/Frontend Lab/templates/react-motion <variant>/
+# edit src/, then:
+cd <variant> && npx vite build
+# entry: dist/index.html
+```
+
+Patterns that match the installed version:
+
+```tsx
+import { motion, AnimatePresence, useReducedMotion } from "motion/react";
+
+// Entrance: opacity plus a small rise, never scale(0)
+<motion.section
+  initial={{ opacity: 0, y: 16 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
+/>
+
+// Press feedback
+<motion.button whileTap={{ scale: 0.97 }} transition={{ duration: 0.12 }} />
+
+// Stagger a list
+const list = { animate: { transition: { staggerChildren: 0.06 } } };
+const item = { initial: { opacity: 0, y: 8 }, animate: { opacity: 1, y: 0 } };
+
+// Exit
+<AnimatePresence mode="popLayout">
+  {open && <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} />}
+</AnimatePresence>
+
+// Spring for gestures and sheets
+transition={{ type: "spring", duration: 0.5, bounce: 0.2 }}
+
+// Decorative pointer tracking
+const x = useSpring(0, { stiffness: 100, damping: 20 });
+
+// Reduced motion
+const reduced = useReducedMotion();
+```
+
+Rules that still apply with Motion: name the values you animate, keep UI transitions under 300ms, exit faster than entry, animate one signature moment, and respect `prefers-reduced-motion` through `useReducedMotion`.
+
+Use CSS transitions for simple hover and color states. Use Motion when state enters or exits the tree, when a gesture needs momentum, or when values follow the pointer.
+
+## Pairing with a design skill
+
+Load the design skill first, then this one. The design skill decides composition, type and identity. This skill decides motion and nothing else.
+
+Order of work:
+
+1. Compose the page with the design skill. No animation yet.
+2. Pick one signature moment tied to a product claim.
+3. Add press feedback, hover states and entrances.
+4. Run the structural check, then look at two images.
+5. Add the reduced-motion branch before you call it done.
