@@ -7,6 +7,7 @@ Three design skills as plain files. Reference a `SKILL.md` by absolute path. The
 - `frontend-design`: aesthetic direction, typography, and deliberate choices instead of templated defaults.
 - `design-taste-frontend`: layout systems, copy, photography, motion, plus a browser checker and finish gate. Ships its references, scripts and assets.
 - `frontend-spedup`: verification companion. Run structural checks and interaction assertions before screenshots. Use it with a design skill, not alone.
+- `motion-craft`: motion and interaction craft only. Easing tokens, duration table, press feedback, reveals, one signature moment. Pair it with a design skill; it does not set layout or identity.
 
 ## Usage
 
