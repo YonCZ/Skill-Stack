@@ -68,6 +68,8 @@ Every page gets one moment that carries the product's claim, and only one. It sh
 
 ## Using Motion in this workspace
 
+Only when the run uses the React starter. If the prompt asks for plain HTML, skip this section and use the CSS rules above.
+
 `motion` is installed at the lab root, with React and Vite. Builds resolve it from there; never run `npm install` in a build folder.
 
 Start from the template:
